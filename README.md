@@ -1,78 +1,89 @@
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow)
+![MLflow](https://img.shields.io/badge/MLflow-ExperimentTracking-blue)
+![AWS](https://img.shields.io/badge/AWS-S3-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 # LLM Monitoring and NLP Bias Evaluation Pipeline
 
 ## Overview
 
-This project implements a pipeline for monitoring and analysing bias in Large Language Model (LLM) hiring evaluations.
+This project implements an end-to-end pipeline for auditing and monitoring bias in Large Language Model (LLM) decision systems.
 
-The system processes candidate CVs, submits them to an LLM for evaluation, and analyses the results for potential bias across demographic groups. Statistical fairness metrics and significance testing are used to measure disparities in hiring decisions and competence scores.
+The system evaluates candidate CVs using an LLM, then analyses model outputs for demographic bias using statistical fairness metrics, hypothesis testing, and visualisation.
 
-The project demonstrates how Natural Language Processing, LLM inference, and statistical fairness analysis can be combined to audit AI decision-making systems.
+The project demonstrates how Natural Language Processing, LLM inference, and fairness evaluation techniques can be integrated into an AI monitoring workflow for responsible AI deployment.
+
+It is designed as a lightweight experiment pipeline for analysing model behaviour, logging results, and identifying potential bias in automated decision-making systems.
 
 ## Tech Stack
 
 ### Languages & Libraries
 
 - Python
-- Hugging Face Transformers (RoBERTa)
-- OpenAI API
 - Pandas
 - NumPy
 - SciPy
 - Matplotlib
+- Hugging Face Transformers (RoBERTa)
+- OpenAI / LLM API
 - MLflow
+
+### Data & Infrastructure
+
+- AWS S3 (dataset storage)
+- Excel / CSV datasets
+- API-based model inference
 
 ## Concepts Used
 
 - Natural Language Processing (NLP)
 - Large Language Model evaluation
 - Sentiment analysis
-- Fairness and bias detection in AI systems
+- AI fairness and bias detection
 - Statistical hypothesis testing
 - Bootstrap resampling
-- Experiment tracking (MLflow)
-
-### Data & Infrastructure
-
-- AWS S3 (dataset storage)
-- Excel datasets
-- API-based model inference
+- Experiment tracking and model monitoring
+- Responsible AI and algorithmic auditing
 
 ## System Pipeline
 
-Candidate CV Dataset
+CV Dataset (Excel / CSV)
      ↓
-Data Preprocessing & Text Extraction
+Data Preprocessing (Pandas)
      ↓
-LLM Resume Evaluation (GPT-4 API)
+LLM Resume Evaluation (API Inference)
      ↓
-Hiring Decision & Competence Scoring
+Hiring Decision + Competence Score
      ↓
-Demographic Metadata Inference
+Sentiment Analysis (RoBERTa)
      ↓
-Fairness Metrics Calculation
+Fairness Metric Calculation
      ↓
-Statistical Testing & Bootstrap Analysis
+Statistical Testing & Bootstrap Resampling
      ↓
 Experiment Tracking (MLflow)
      ↓
-Bias Visualisation & Reporting
+Bias Visualisation & Monitoring
 
 ## How It Works
 
-1. CV datasets are loaded and preprocessed to extract resume text and metadata.
+1. Candidate CV datasets are loaded and preprocessed using Python and Pandas.
 
-2. Each candidate profile is evaluated using a Large Language Model through API inference, generating:
-   - qualitative evaluation
-   - binary hire decision
-   - competence score.
+2. Each CV is submitted to a Large Language Model through an API to generate:
+   - hiring decision (binary outcome)
+   - competence score
+   - reasoning output.
 
-3. Demographic attributes (such as gender and ethnicity) are inferred from candidate names.
+3. Sentiment analysis is performed using a Hugging Face RoBERTa model to analyse tone and reasoning patterns in model outputs.
 
-4. Fairness metrics are computed to measure potential bias in model decisions.
+4. Demographic attributes (such as gender and ethnicity) are associated with candidate profiles to enable bias analysis.
 
-5. Statistical testing and resampling techniques are applied to assess the significance of observed disparities.
+5. Fairness metrics are calculated to identify disparities in hiring decisions across demographic groups.
 
-6. Results are logged and visualised to analyse patterns in model behaviour across demographic groups.
+6. Statistical testing and bootstrap resampling are applied to determine whether observed differences are statistically significant.
+
+7. Experiments are logged using MLflow, and visualisations are generated to analyse model behaviour and bias patterns.
 
 ## Running the Project
 
@@ -80,15 +91,15 @@ Install dependencies:
 
 pip install pandas numpy scipy matplotlib transformers mlflow openai
 
-Run the evaluation pipeline:
+Run the LLM evaluation pipeline:
 
 python testing_script.py
 
-Run the comparison and batch evaluation pipeline:
+Run the candidate comparison experiments:
 
 python comparison_script.py
 
-Generate fairness visualisations and bias analysis:
+Generate fairness metrics and bias visualisations:
 
 python visualisation_script.py
 
@@ -104,13 +115,22 @@ The pipeline produces several outputs:
 
 ## Why This Project Matters
 
-As LLMs are increasingly used in hiring and decision-making systems, understanding potential bias is critical.
+As Large Language Models are increasingly used in automated decision systems, monitoring and auditing their behaviour is essential.
 
-This project demonstrates how AI systems can be audited using:
+This project demonstrates how to build an AI monitoring pipeline that combines:
 
-- NLP pipelines for processing candidate data
-- LLM inference for automated evaluation
-- statistical fairness metrics for bias detection
-- experiment tracking and reproducible analysis
+- NLP-based data processing
+- LLM inference and evaluation
+- fairness metrics and statistical testing
+- experiment tracking and visualisation
 
-It highlights the importance of building transparent monitoring tools for responsible AI deployment.
+## Author
+
+**Michael Mbomena**
+
+BSc Computer Science  
+MSc Artificial Intelligence  
+
+GitHub: https://github.com/mbomenamichael
+
+The system illustrates how machine learning models can be analysed and monitored for bias, helping support responsible and transparent AI deployment.
